@@ -11,8 +11,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    def mvnHome = tool name: 'Maven', type: 'maven'
-                    def mavenCmd = "${M2_HOME:}/bin/mvn"
+                    
+                    def mavenCmd = "${env.M2_HOME}/bin/mvn"
                     
                     sh "${mavenCmd} clean install"
                 }
