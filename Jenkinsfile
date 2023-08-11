@@ -9,16 +9,19 @@ pipeline {
         }
         
         stage('Build') {
-            steps {
-                script {
-                    
-                    def mavenCmd = "${env.M2_HOME}/bin/mvn"
-                    
-                    sh "${mavenCmd} clean install"
-                }
+    steps {
+        script {
+            def mavenCmd = "${env.M2_HOME}/bin/mvn"
+            
+            try {
+                sh "${mavenCmd} clean install"
+            } catch (Exception e) {
+                currentBuild.result = 'FAILURE'
+                error("Build failed: ${e.message}")
             }
-        }
-        
+        }
+    }
+}
         stage('Docker Build') {
             steps {
                 script {
