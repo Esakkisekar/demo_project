@@ -19,7 +19,7 @@ pipeline {
                 currentBuild.result = 'FAILURE'
                 error("Build failed: ${e.message}")
             }
-        }
+        
     }
 }
         stage('Docker Build') {
