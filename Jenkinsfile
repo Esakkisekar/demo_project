@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    def mavenCmd = "${env.M2_HOME}/bin/mvn"
+                    def mavenCmd = "/opt/apache-maven-3.6.3/bin/mvn"
 
                     try {
                         sh "${mavenCmd} clean install"
